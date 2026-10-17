@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spring Transactions: From Proxy to Commit · Mike Chen's Blog</title><meta name="description" content="Notes on Java, Spring, databases, distributed systems, and AI agents by Mike Chen."><link rel="icon" href="/mike-chen/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/mike-chen/style.css?v=reference-1"><link rel="alternate" type="application/rss+xml" title="Mike Chen's Blog" href="/mike-chen/feed.xml"></head><body><a class="skip" href="#main">Skip to content</a><section class="top"><header><h1><a href="/mike-chen/">Mike Chen's Blog</a></h1></header><nav aria-label="Main navigation"><ul><li><a href="/mike-chen/about/">About</a></li></ul></nav></section><main class="content" id="main"><article class="article"><a class="back" href="/mike-chen/">← All posts</a><div class="article-meta"><time>2026-10-17</time><span>Java / Spring</span><span>Sample post</span></div><h1>Spring Transactions: From Proxy to Commit</h1><div class="prose"><p>This sample post demonstrates the blog’s layout. It is not a formally published technical article.</p>
+<h2>Start with a method call</h2>
+<p>To understand Spring transactions, follow a single method call: a proxy intercepts the call, a transaction manager prepares the transaction, the business method runs, and the transaction is committed or rolled back.</p>
+<blockquote>A transaction boundary depends on whether the call passes through a proxy, as well as on the annotation.</blockquote>
+<h2>A simple example</h2>
+<p>Here is a typical use of declarative transaction management.</p>
+<div class="code-label">JAVA</div><pre><code><span class="annotation">@Transactional</span>(rollbackFor = Exception.<span class="kw">class</span>)
+<span class="kw">public</span> <span class="kw">void</span> createOrder(Order order) {
+    orderRepository.save(order);
+    inventoryService.reserve(order.getItems());
+}</code></pre>
+<p><code>@Transactional</code> declares transaction semantics for a method invocation intercepted by the proxy. Whether a new transaction is started also depends on the propagation behavior and any existing transaction.</p>
+<h2>REQUIRED and REQUIRES_NEW</h2>
+<ul>
+<li>REQUIRED: participate in an existing transaction, or start a new one if none exists.</li>
+<li>REQUIRES_NEW: suspend the existing transaction and start an independent one.</li>
+<li>NESTED: with a supporting transaction manager, typically use a savepoint to establish a nested boundary.</li>
+</ul>
+<h2>Where I would look next</h2>
+<p>Separate the abstraction from its implementation. First follow the transaction manager’s commit, rollback, and cleanup paths. Then trace when a JDBC connection is acquired, bound to the current thread, and released.</p>
+<p>Replace this sample with your first real note whenever you are ready.</p></div><div class="article-end">— Mike Chen</div><a class="back" href="/mike-chen/">← Back to all posts</a></article></main></body></html>
