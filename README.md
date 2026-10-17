@@ -1,6 +1,6 @@
 # Mike Chen Blog
 
-A minimal personal blog, published at https://jack-110.github.io/.
+A minimal personal blog, published at https://jack-110.github.io/mike-chen/.
 
 ## Write a post
 
