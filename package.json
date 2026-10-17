@@ -1,0 +1,1 @@
+{"name":"mike-chen-blog","private":true,"scripts":{"build":"python3 build.py","dev":"python3 -m http.server 4173 --directory dist"}}
