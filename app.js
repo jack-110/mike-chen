@@ -1,2 +1,23 @@
-document.querySelector('.theme').addEventListener('click',()=>{const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';try{localStorage.theme=dark?'dark':'light'}catch(e){} });
-document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{const filter=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button))});let count=0;document.querySelectorAll('.post-row').forEach(row=>{row.hidden=filter!=='all'&&!JSON.parse(row.dataset.tags).includes(filter);if(!row.hidden)count++});document.querySelector('.count').textContent=String(count).padStart(2,'0')+' posts';document.getElementById('empty').hidden=count!==0}));
+const filters = document.querySelector('.category-filters');
+
+if (filters) {
+  const buttons = [...filters.querySelectorAll('[data-filter]')];
+  const rows = [...document.querySelectorAll('.post-row')];
+  const count = document.querySelector('.post-count');
+  const empty = document.getElementById('empty-posts');
+
+  filters.hidden = false;
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.filter;
+      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      let visible = 0;
+      rows.forEach(row => {
+        row.hidden = category !== 'All' && row.dataset.category !== category;
+        if (!row.hidden) visible += 1;
+      });
+      count.textContent = `${visible} ${visible === 1 ? 'post' : 'posts'}`;
+      empty.hidden = visible !== 0;
+    });
+  });
+}

@@ -8,4 +8,6 @@ Edit `spring-transactions.md` or add a file named `spring-your-slug.md` in the r
 
 Run `python3 build.py` to generate `dist/`. Every push to master builds and deploys the site through GitHub Pages.
 
+Set `category: Tech`, `category: Course`, or `category: Reading` in a post's frontmatter to place it in a homepage category. Posts without a category default to Tech. The homepage opens on All; category buttons show the number of posts and filter the list.
+
 `style.css`, `app.js`, and `favicon.svg` are source assets. No dependencies are required.
