@@ -3,9 +3,6 @@ html{background:#fdfdfd}body{max-width:800px;margin:0 auto;padding:0 20px;backgr
 /* Homepage categories */
 [hidden]{display:none!important}
 .home{--home-muted:#687068;--home-line:#dedfd7;--home-accent:#486548;color:#252a27}
-.home-intro{padding:24px 0 34px}
-.home-intro h2{font:400 36px/1.25 Georgia,serif;letter-spacing:-1px;margin-bottom:14px}
-.home-intro>p:last-child{font:400 14px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--home-muted);margin:0}
 .category-filters{display:flex;flex-wrap:wrap;gap:8px;padding-bottom:22px;border-bottom:1px solid var(--home-line)}
 .category-filter{border:0;border-radius:7px;background:transparent;color:var(--home-muted);font:400 14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:10px 17px;min-height:44px;cursor:pointer}
 .category-filter[aria-pressed="true"]{background:#252a27;color:#faf9f6}
@@ -23,4 +20,4 @@ html{background:#fdfdfd}body{max-width:800px;margin:0 auto;padding:0 20px;backgr
 .home .post-meta{font:400 11px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--home-muted);white-space:nowrap;padding-top:3px}
 .empty-posts{padding:32px 0;color:var(--home-muted);font-size:16px}
 .home .rss-subscribe{font-size:14px}
-@media(max-width:600px){.home-intro h2{font-size:29px}.category-filter{padding:10px 12px}.home .post-row{grid-template-columns:1fr;gap:9px}.home .post-meta{grid-row:1}}
+@media(max-width:600px){.category-filter{padding:10px 12px}.home .post-row{grid-template-columns:1fr;gap:9px}.home .post-meta{grid-row:1}}
