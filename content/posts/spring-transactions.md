@@ -2,7 +2,7 @@
 title: Spring Transactions: From Proxy to Commit
 date: 2026-10-17
 category: Tech
-tags: Java, Spring
+tags: Spring
 sample: true
 ---
 This sample post demonstrates the blog’s layout. It is not a formally published technical article.
