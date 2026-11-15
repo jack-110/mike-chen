@@ -24,6 +24,7 @@ def markdown(s, base=None):
         if code: buf.append(line);continue
         if not line.startswith('- ') and listing: result.append('</ul>');listing=False
         if line.startswith('## '): result.append('<h2>'+inline(line[3:])+'</h2>')
+        elif line.startswith('# '): result.append('<h1>'+inline(line[2:])+'</h1>')
         elif line.startswith('> '): result.append('<blockquote>'+inline(line[2:])+'</blockquote>')
         elif line.startswith('- '):
             if not listing: result.append('<ul>');listing=True
