@@ -21,3 +21,4 @@ html{background:#fdfdfd}html{--page-text:#252a27;--page-muted:#687068;--page-lin
 .empty-posts{padding:32px 0;color:var(--home-muted);font-size:16px}
 .home .rss-subscribe{font-size:14px}
 @media(max-width:600px){.category-filter{padding:10px 12px}.home .post-row{grid-template-columns:1fr;gap:9px}.home .post-meta{grid-row:1}}
+.prose .diagram{margin:8px 0 32px}.prose .diagram img{display:block;width:100%;height:auto}

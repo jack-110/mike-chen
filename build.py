@@ -11,8 +11,8 @@ def esc(s): return html.escape(s,quote=True)
 def inline(s):
     s=esc(s)
     return re.sub(r'`([^`]+)`',r'<code>\1</code>',s)
-def markdown(s):
-    result=[]; code=False; buf=[]; listing=False
+def markdown(s, base=None):
+    result=[]; code=False; buf=[]; listing=False; assets=[]
     for line in s.splitlines()+['']:
         if line.startswith('```'):
             if code:
@@ -28,14 +28,27 @@ def markdown(s):
         elif line.startswith('- '):
             if not listing: result.append('<ul>');listing=True
             result.append('<li>'+inline(line[2:])+'</li>')
+        elif (img:=re.fullmatch(r'!\[([^\]]*)\]\(([^)\s]+)\)', line.strip())):
+            src=img.group(2)
+            if base is not None and not src.startswith(('http://','https://','//')):
+                local=None if src.startswith('/') else (base/src).resolve()
+                if local is not None and local.is_file():
+                    assets.append(local); src='../../images/'+local.name
+                elif src.startswith('/'): src='../../'+src.lstrip('/')
+            result.append(f'<figure class="diagram"><img src="{esc(src)}" alt="{esc(img.group(1))}"></figure>')
         elif line: result.append('<p>'+inline(line)+'</p>')
-    return '\n'.join(result)
+    return '\n'.join(result), assets
 def page(title,content,active='posts',description='Notes on Java, Spring, databases, distributed systems, and AI agents by Mike Chen.'):
     result = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} · Mike Chen's Blog</title><meta name="description" content="{esc(description)}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css?v=categories-2"><link rel="alternate" type="application/rss+xml" title="Mike Chen's Blog" href="/feed.xml"><script src="/app.js?v=categories-1" defer></script></head><body><a class="skip" href="#main">Skip to content</a><section class="top"><header><h1><a href="/">Mike Chen's Blog</a></h1></header><nav aria-label="Main navigation"><ul><li><a href="/about/">About</a></li></ul></nav></section><main class="content" id="main">{content}</main></body></html>'''
     return result.replace('href="/', 'href="/mike-chen/').replace('src="/', 'src="/mike-chen/')
 import shutil
 for asset in ('style.css', 'app.js', 'favicon.svg'):
     if (ROOT/asset).exists(): shutil.copyfile(ROOT/asset, OUT/asset)
+img_dir=ROOT/'content'/'images'
+if img_dir.exists():
+    dest=OUT/'images'; dest.mkdir(exist_ok=True)
+    for image in img_dir.iterdir():
+        if image.is_file(): shutil.copyfile(image, dest/image.name)
 posts=[]
 for file in sorted(list((ROOT/'content/posts').glob('*.md')) + list(ROOT.glob('spring-*.md')),reverse=True):
     _,front,body=file.read_text().split('---',2)
@@ -44,7 +57,7 @@ for file in sorted(list((ROOT/'content/posts').glob('*.md')) + list(ROOT.glob('s
     if category is None:
         raise ValueError(f'{file}: category must be Tech, AI, or Reading')
     meta['category']=category
-    meta.update(slug=file.stem,body=body,tags=[t.strip() for t in meta['tags'].split(',')]);posts.append(meta)
+    meta.update(slug=file.stem,body=body,source=file,tags=[t.strip() for t in meta['tags'].split(',')]);posts.append(meta)
 posts.sort(key=lambda p:p['date'],reverse=True)
 rows=[]
 for p in posts:
@@ -57,7 +70,9 @@ about=OUT/'about';about.mkdir(exist_ok=True)
 about.joinpath('index.html').write_text(page('About', '''<section class="about"><p class="eyebrow">A LITTLE ABOUT ME</p><h1>Hi, I’m Mike.</h1><div class="prose"><p>I’m a software engineer at the GOTO company, with a focus on the lending business. I write about what I’m learning and building with Java, Spring, databases, distributed systems, and AI agents.</p><h2>About this blog</h2><p>Some ideas only become clear when I write them down. This blog is a place to connect scattered observations and leave a trail for the next time I face the same problem.</p><p>Expect source code walkthroughs, notes on system design, and observations from trying new tools.</p><p>Find me on <a href="https://x.com/C0x68en">X</a>, <a href="https://github.com/jack-110">GitHub</a>, and <a href="https://www.linkedin.com/in/c0x68en/">LinkedIn</a>.</p></div></section>''','about'))
 for p in posts:
     folder=OUT/'posts'/p['slug'];folder.mkdir(parents=True,exist_ok=True)
-    content=f'''<article class="article"><a class="back" href="/">← All posts</a><div class="article-meta"><time>{p['date']}</time><span>{esc(" / ".join(p["tags"]))}</span>{"<span>Sample post</span>" if p.get("sample")=="true" else ""}</div><h1>{esc(p['title'])}</h1><div class="prose">{markdown(p['body'])}</div><div class="article-end">— Mike Chen</div><a class="back" href="/">← Back to all posts</a></article>'''
+    rendered,assets=markdown(p['body'], p['source'].parent)
+    for asset in assets: shutil.copyfile(asset, OUT/'images'/asset.name)
+    content=f'''<article class="article"><a class="back" href="/">← All posts</a><div class="article-meta"><time>{p['date']}</time><span>{esc(" / ".join(p["tags"]))}</span>{"<span>Sample post</span>" if p.get("sample")=="true" else ""}</div><h1>{esc(p['title'])}</h1><div class="prose">{rendered}</div><div class="article-end">— Mike Chen</div><a class="back" href="/">← Back to all posts</a></article>'''
     folder.joinpath('index.html').write_text(page(p['title'],content))
 items=''.join(f'<item><title>{esc(p["title"])}</title><link>{ORIGIN}/posts/{p["slug"]}/</link><guid>{ORIGIN}/posts/{p["slug"]}/</guid><description>A sample post demonstrating the blog layout.</description><pubDate>{datetime.strptime(p["date"],"%Y-%m-%d").strftime("%a, %d %b %Y 00:00:00 +0000")}</pubDate></item>' for p in posts)
 (OUT/'feed.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Mike Chen Blog</title><link>{ORIGIN}</link><description>Software, systems, and ideas</description><language>en</language>{items}</channel></rss>')

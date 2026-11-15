@@ -6,12 +6,15 @@ tags: Agent
 sample: false
 ---
 
-The course convers two areas: LLM and agent engineering. Agent engineering is about buiding reliable software based on the LLM. This is the first lecture of the Standford CS329Z course. This lecture covers three import parts: agent architecture, compound AI Systems, and key challenges.
+The course teach about how to buiding reliable softwares based on the LLM. This is the first lecture of the Standford CS329Z course. This lecture covers three import parts: agent architecture, compound AI Systems, and key challenges.
 
 # Agent Architecture
 
+An agent is anything that could perceive the enviroments and take actions. It is build from four key components: LLM Core, Planning & Reasoning, Memory, Tools.
+
+![Agents: Key Components](../images/agents-key-components.svg)
 
 # Compound AI Systems
 
 
-# Key Challenges
+## Key Challenges
