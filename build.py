@@ -5,7 +5,7 @@ from datetime import datetime
 ROOT=Path(__file__).parent
 OUT=ROOT/'dist'; OUT.mkdir(exist_ok=True)
 ORIGIN='https://jack-110.github.io/mike-chen'
-CATEGORIES=('Tech', 'LLM', 'AI', 'Reading')
+CATEGORIES=('Tech', 'AI', 'Reading')
 CATEGORY_BY_KEY={category.lower(): category for category in CATEGORIES}
 def esc(s): return html.escape(s,quote=True)
 def inline(s):
@@ -42,7 +42,7 @@ for file in sorted(list((ROOT/'content/posts').glob('*.md')) + list(ROOT.glob('s
     meta=dict(line.split(': ',1) for line in front.strip().splitlines())
     category=CATEGORY_BY_KEY.get(meta.get('category', 'Tech').strip().lower())
     if category is None:
-        raise ValueError(f'{file}: category must be Tech, LLM, AI, or Reading')
+        raise ValueError(f'{file}: category must be Tech, AI, or Reading')
     meta['category']=category
     meta.update(slug=file.stem,body=body,tags=[t.strip() for t in meta['tags'].split(',')]);posts.append(meta)
 posts.sort(key=lambda p:p['date'],reverse=True)
