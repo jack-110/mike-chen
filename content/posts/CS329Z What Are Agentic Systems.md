@@ -1,7 +1,7 @@
 ---
 title: What Are Agentic Systems
 date: 2026-11-15
-category: Tech
+category: AI
 tags: LLM
 sample: false
 ---

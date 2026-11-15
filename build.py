@@ -5,7 +5,8 @@ from datetime import datetime
 ROOT=Path(__file__).parent
 OUT=ROOT/'dist'; OUT.mkdir(exist_ok=True)
 ORIGIN='https://jack-110.github.io/mike-chen'
-CATEGORIES=('Tech', 'Course', 'Reading')
+CATEGORIES=('Tech', 'LLM', 'AI', 'Reading')
+CATEGORY_BY_KEY={category.lower(): category for category in CATEGORIES}
 def esc(s): return html.escape(s,quote=True)
 def inline(s):
     s=esc(s)
@@ -39,9 +40,9 @@ posts=[]
 for file in sorted(list((ROOT/'content/posts').glob('*.md')) + list(ROOT.glob('spring-*.md')),reverse=True):
     _,front,body=file.read_text().split('---',2)
     meta=dict(line.split(': ',1) for line in front.strip().splitlines())
-    category=meta.get('category', 'Tech').strip().title()
-    if category not in CATEGORIES:
-        raise ValueError(f'{file}: category must be Tech, Course, or Reading')
+    category=CATEGORY_BY_KEY.get(meta.get('category', 'Tech').strip().lower())
+    if category is None:
+        raise ValueError(f'{file}: category must be Tech, LLM, AI, or Reading')
     meta['category']=category
     meta.update(slug=file.stem,body=body,tags=[t.strip() for t in meta['tags'].split(',')]);posts.append(meta)
 posts.sort(key=lambda p:p['date'],reverse=True)
