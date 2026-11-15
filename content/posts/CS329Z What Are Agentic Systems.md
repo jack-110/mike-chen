@@ -11,6 +11,7 @@ The course teach about how to buiding reliable softwares based on the LLM. This 
 ## Agent Architecture
 
 An agent is anything that could perceive the enviroments and take actions. It is build from four key components: LLM Core, Planning & Reasoning, Memory, Tools.
+
 ![Agents: Key Components](../images/agents-key-components.svg)
 
 ### Planning & Reasoning

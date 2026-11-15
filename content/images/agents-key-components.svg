@@ -1,57 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="500" viewBox="0 0 960 500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="216" viewBox="0 0 500 216" role="img" aria-labelledby="title desc">
   <title id="title">Agents: Key Components</title>
   <desc id="desc">Planning and reasoning and memory feed an LLM core, which calls tools and produces agent actions. The agent observes and acts on an external environment.</desc>
-  <rect width="960" height="500" fill="#ffffff"/>
-  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" fill="#1a1a1a">
-    <text x="8" y="46" font-size="34" font-weight="600">Agents: Key Components</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" fill="#252a27">
+    <rect x="8" y="8" width="180" height="40" rx="6" fill="#d7ebfa"/>
+    <text x="98" y="28" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="650">Planning &amp; Reasoning</text>
 
-    <rect x="8" y="76" width="312" height="64" rx="8" fill="#5EAEF0"/>
-    <text x="164" y="108" text-anchor="middle" dominant-baseline="central" font-size="20" font-weight="700">Planning &amp; Reasoning</text>
+    <rect x="196" y="8" width="112" height="40" rx="6" fill="#d9f0c4"/>
+    <text x="252" y="28" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="650">Memory</text>
 
-    <rect x="336" y="76" width="312" height="64" rx="8" fill="#8BCF6A"/>
-    <text x="492" y="108" text-anchor="middle" dominant-baseline="central" font-size="20" font-weight="700">Memory</text>
+    <rect x="8" y="60" width="300" height="40" rx="6" fill="#f6e4d4"/>
+    <text x="158" y="80" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="650">LLM Core</text>
 
-    <rect x="8" y="172" width="640" height="64" rx="8" fill="#F8D5C0"/>
-    <text x="328" y="204" text-anchor="middle" dominant-baseline="central" font-size="20">LLM Core</text>
+    <rect x="8" y="112" width="300" height="50" rx="6" fill="#d4f0fb"/>
+    <text x="158" y="130" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="650">Tools</text>
+    <text x="158" y="148" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#687068">Retrieval, code, search, files</text>
 
-    <rect x="8" y="268" width="640" height="96" rx="8" fill="#B9E2F8"/>
-    <text x="328" y="300" text-anchor="middle" dominant-baseline="central" font-size="20" font-weight="700">Tools</text>
-    <text x="328" y="332" text-anchor="middle" dominant-baseline="central" font-size="16" font-style="italic">Retrieval, Calculator, Code, Search, File Operations...</text>
-
-    <rect x="8" y="396" width="640" height="68" rx="8" fill="#CDB4E6"/>
-    <text x="328" y="430" text-anchor="middle" dominant-baseline="central" font-size="17">
-      <tspan font-weight="700">Agent actions: </tspan><tspan font-style="italic">tool call, interaction, response to users</tspan>
+    <rect x="8" y="174" width="300" height="34" rx="6" fill="#e5d8f3"/>
+    <text x="158" y="191" text-anchor="middle" dominant-baseline="central" font-size="12">
+      <tspan font-weight="650">Actions</tspan><tspan fill="#687068"> · tool call, response</tspan>
     </text>
 
-    <rect x="716" y="76" width="232" height="388" rx="22" fill="#F6D3DA"/>
-    <text x="832" y="168" text-anchor="middle" font-size="20" font-weight="700">Environment</text>
-    <text x="832" y="196" text-anchor="middle" font-size="18" font-weight="700">(external world)</text>
-    <text x="832" y="258" text-anchor="middle" font-size="17" font-style="italic">
-      <tspan x="832" dy="0">Desktop OS,</tspan>
-      <tspan x="832" dy="28">Web browser,</tspan>
-      <tspan x="832" dy="28">Mobile apps,</tspan>
-      <tspan x="832" dy="28">Games,</tspan>
-      <tspan x="832" dy="28">Databases,</tspan>
-      <tspan x="832" dy="28">etc</tspan>
+    <rect x="376" y="8" width="116" height="200" rx="12" fill="#f8e0e6"/>
+    <text x="434" y="42" text-anchor="middle" font-size="13" font-weight="650">Environment</text>
+    <text x="434" y="60" text-anchor="middle" font-size="11" fill="#687068">(external world)</text>
+    <text x="434" y="96" text-anchor="middle" font-size="11" fill="#3d4a44">
+      <tspan x="434" dy="0">Desktop OS</tspan>
+      <tspan x="434" dy="18">Web browser</tspan>
+      <tspan x="434" dy="18">Mobile apps</tspan>
+      <tspan x="434" dy="18">Databases</tspan>
     </text>
-
-    <text x="682" y="188" text-anchor="middle" font-size="15">observe</text>
-    <text x="682" y="404" text-anchor="middle" font-size="15">act</text>
   </g>
+  <g fill="#252a27" stroke="#252a27" stroke-width="1.5" stroke-linecap="round">
+    <line x1="98" y1="48" x2="98" y2="54" fill="none"/>
+    <polygon points="93,54 103,54 98,60" stroke="none"/>
+    <line x1="252" y1="48" x2="252" y2="54" fill="none"/>
+    <polygon points="247,54 257,54 252,60" stroke="none"/>
+    <line x1="158" y1="100" x2="158" y2="106" fill="none"/>
+    <polygon points="153,106 163,106 158,112" stroke="none"/>
+    <line x1="158" y1="162" x2="158" y2="168" fill="none"/>
+    <polygon points="153,168 163,168 158,174" stroke="none"/>
 
-  <g fill="#1a1a1a" stroke="#1a1a1a" stroke-width="2.4">
-    <line x1="164" y1="144" x2="164" y2="158" fill="none"/>
-    <polygon points="156,156 172,156 164,170" stroke="none"/>
-    <line x1="492" y1="144" x2="492" y2="158" fill="none"/>
-    <polygon points="484,156 500,156 492,170" stroke="none"/>
-    <line x1="328" y1="240" x2="328" y2="254" fill="none"/>
-    <polygon points="320,252 336,252 328,266" stroke="none"/>
-    <line x1="328" y1="368" x2="328" y2="382" fill="none"/>
-    <polygon points="320,380 336,380 328,394" stroke="none"/>
-
-    <line x1="704" y1="204" x2="668" y2="204" fill="none"/>
-    <polygon points="670,196 670,212 654,204" stroke="none"/>
-    <line x1="656" y1="430" x2="692" y2="430" fill="none"/>
-    <polygon points="690,422 690,438 706,430" stroke="none"/>
+    <line x1="368" y1="80" x2="324" y2="80" fill="none"/>
+    <polygon points="324,75 324,85 312,80" stroke="none"/>
+    <line x1="308" y1="191" x2="352" y2="191" fill="none"/>
+    <polygon points="352,186 352,196 364,191" stroke="none"/>
+  </g>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" fill="#687068" font-size="11">
+    <text x="346" y="72" text-anchor="middle">observe</text>
+    <text x="336" y="184" text-anchor="middle">act</text>
   </g>
 </svg>

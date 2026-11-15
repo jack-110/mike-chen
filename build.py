@@ -23,7 +23,8 @@ def markdown(s, base=None):
             code=not code;continue
         if code: buf.append(line);continue
         if not line.startswith('- ') and listing: result.append('</ul>');listing=False
-        if line.startswith('## '): result.append('<h2>'+inline(line[3:])+'</h2>')
+        if line.startswith('### ') and not line.startswith('####'): result.append('<h3>'+inline(line[4:])+'</h3>')
+        elif line.startswith('## '): result.append('<h2>'+inline(line[3:])+'</h2>')
         elif line.startswith('# '): result.append('<h1>'+inline(line[2:])+'</h1>')
         elif line.startswith('> '): result.append('<blockquote>'+inline(line[2:])+'</blockquote>')
         elif line.startswith('- '):
@@ -40,7 +41,7 @@ def markdown(s, base=None):
         elif line: result.append('<p>'+inline(line)+'</p>')
     return '\n'.join(result), assets
 def page(title,content,active='posts',description='Notes on Java, Spring, databases, distributed systems, and AI agents by Mike Chen.'):
-    result = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} · Mike Chen's Blog</title><meta name="description" content="{esc(description)}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css?v=categories-2"><link rel="alternate" type="application/rss+xml" title="Mike Chen's Blog" href="/feed.xml"><script src="/app.js?v=categories-1" defer></script></head><body><a class="skip" href="#main">Skip to content</a><section class="top"><header><h1><a href="/">Mike Chen's Blog</a></h1></header><nav aria-label="Main navigation"><ul><li><a href="/about/">About</a></li></ul></nav></section><main class="content" id="main">{content}</main></body></html>'''
+    result = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} · Mike Chen's Blog</title><meta name="description" content="{esc(description)}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css?v=h3-diagram-2"><link rel="alternate" type="application/rss+xml" title="Mike Chen's Blog" href="/feed.xml"><script src="/app.js?v=categories-1" defer></script></head><body><a class="skip" href="#main">Skip to content</a><section class="top"><header><h1><a href="/">Mike Chen's Blog</a></h1></header><nav aria-label="Main navigation"><ul><li><a href="/about/">About</a></li></ul></nav></section><main class="content" id="main">{content}</main></body></html>'''
     return result.replace('href="/', 'href="/mike-chen/').replace('src="/', 'src="/mike-chen/')
 import shutil
 for asset in ('style.css', 'app.js', 'favicon.svg'):
