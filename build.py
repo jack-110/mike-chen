@@ -5,7 +5,7 @@ from datetime import datetime
 ROOT=Path(__file__).parent
 OUT=ROOT/'dist'; OUT.mkdir(exist_ok=True)
 ORIGIN='https://jack-110.github.io/mike-chen'
-CATEGORIES=('Tech', 'AI', 'Reading')
+CATEGORIES=('Engineering', 'CS', 'AI', 'Reading')
 CATEGORY_BY_KEY={category.lower(): category for category in CATEGORIES}
 def esc(s): return html.escape(s,quote=True)
 def inline(s):
@@ -37,11 +37,11 @@ def markdown(s, base=None):
                 if local is not None and local.is_file():
                     assets.append(local); src='../../images/'+local.name
                 elif src.startswith('/'): src='../../'+src.lstrip('/')
-            result.append(f'<figure class="diagram"><img src="{esc(src)}" alt="{esc(img.group(1))}"></figure>')
+            result.append(f'<figure class="diagram"><img src="{esc(src)}?v=2" alt="{esc(img.group(1))}"></figure>')
         elif line: result.append('<p>'+inline(line)+'</p>')
     return '\n'.join(result), assets
 def page(title,content,active='posts',description='Notes on Java, Spring, databases, distributed systems, and AI agents by Mike Chen.'):
-    result = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} · Mike Chen's Blog</title><meta name="description" content="{esc(description)}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css?v=h3-diagram-2"><link rel="alternate" type="application/rss+xml" title="Mike Chen's Blog" href="/feed.xml"><script src="/app.js?v=categories-1" defer></script></head><body><a class="skip" href="#main">Skip to content</a><section class="top"><header><h1><a href="/">Mike Chen's Blog</a></h1></header><nav aria-label="Main navigation"><ul><li><a href="/about/">About</a></li></ul></nav></section><main class="content" id="main">{content}</main></body></html>'''
+    result = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} · Mike Chen's Blog</title><meta name="description" content="{esc(description)}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css?v=diagram-gap-1"><link rel="alternate" type="application/rss+xml" title="Mike Chen's Blog" href="/feed.xml"><script src="/app.js?v=categories-1" defer></script></head><body><a class="skip" href="#main">Skip to content</a><section class="top"><header><h1><a href="/">Mike Chen's Blog</a></h1></header><nav aria-label="Main navigation"><ul><li><a href="/about/">About</a></li></ul></nav></section><main class="content" id="main">{content}</main></body></html>'''
     return result.replace('href="/', 'href="/mike-chen/').replace('src="/', 'src="/mike-chen/')
 import shutil
 for asset in ('style.css', 'app.js', 'favicon.svg'):
@@ -55,9 +55,9 @@ posts=[]
 for file in sorted(list((ROOT/'content/posts').glob('*.md')) + list(ROOT.glob('spring-*.md')),reverse=True):
     _,front,body=file.read_text().split('---',2)
     meta=dict(line.split(': ',1) for line in front.strip().splitlines())
-    category=CATEGORY_BY_KEY.get(meta.get('category', 'Tech').strip().lower())
+    category=CATEGORY_BY_KEY.get(meta.get('category', 'Engineering').strip().lower())
     if category is None:
-        raise ValueError(f'{file}: category must be Tech, AI, or Reading')
+        raise ValueError(f'{file}: category must be {", ".join(CATEGORIES)}')
     meta['category']=category
     meta.update(slug=file.stem,body=body,source=file,tags=[t.strip() for t in meta['tags'].split(',')]);posts.append(meta)
 posts.sort(key=lambda p:p['date'],reverse=True)

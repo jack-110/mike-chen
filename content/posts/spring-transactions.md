@@ -1,7 +1,7 @@
 ---
 title: Spring Transactions: From Proxy to Commit
 date: 2026-10-17
-category: Tech
+category: Engineering
 tags: Spring
 sample: true
 ---
