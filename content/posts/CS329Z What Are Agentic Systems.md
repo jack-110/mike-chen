@@ -27,7 +27,7 @@ Self consistency is a variant of COT, it generates a diverse set of reasoning pa
 
 
 
-#### Agent Memory
+### Agent Memory
 
 
 ## Compound AI Systems
