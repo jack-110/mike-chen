@@ -30,6 +30,8 @@ Reflexion agents reflect on its task feedbacks, and then maintain the reflective
 - Self-reflection LLM: generate the reflective text and write them into the episodic memory.
 - Experience: long-term memory.
 
+
+
 ### Agent Memory
 
 
