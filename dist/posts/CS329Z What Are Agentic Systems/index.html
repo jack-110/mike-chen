@@ -7,6 +7,14 @@
 <p>COT is a prompting trick that make the LLM to write out intermideate reasoning steps before it gives the final answer. COT has the hallcination problem, as it just do the reasoning without actions.</p>
 <p>ReAct mitegate the halucination problem by taking actions. It interleaves the reasoning steps with real actions(tool callings), so it can verify it&#x27;s reasoning steps by observe the results of the tool callings.</p>
 <p>Self consistency is a variant of COT, it generates a diverse set of reasoning path, instead of just one, and aggregate by choosing the most consistent answer in the anwser sets.</p>
+<p>Reflexion agents reflect on its task feedbacks, and then maintain the reflective text in the episodic(long-term) memory that can be used as &quot;self hints&quot; in the future. Specifically, when a task failed for not handle the empty test in the first run, and the agent will absobe the refelctive test &quot;handle the empty list&quot; in the next run(not the next step in the same run). The reflexion contains five parts:</p>
+<ul>
+<li>Actor: take actions and generate the trajectory.</li>
+<li>Trajectory: short-term memeory.</li>
+<li>Evaluator: judge the trajectory through unit test, exc, and pass it&#x27;s feedback to the self-relection LLM.</li>
+<li>Self-reflection LLM: generate the reflective text and write them into the episodic memory.</li>
+<li>Experience: long-term memory.</li>
+</ul>
 <h3>Agent Memory</h3>
 <h2>Compound AI Systems</h2>
 <h2>Key Challenges</h2></div></article></main></body></html>
