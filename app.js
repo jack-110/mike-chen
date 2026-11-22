@@ -3,7 +3,6 @@ const filters = document.querySelector('.category-filters');
 if (filters) {
   const buttons = [...filters.querySelectorAll('[data-filter]')];
   const rows = [...document.querySelectorAll('.post-row')];
-  const count = document.querySelector('.post-count');
   const empty = document.getElementById('empty-posts');
 
   filters.hidden = false;
@@ -16,7 +15,6 @@ if (filters) {
         row.hidden = category !== 'All' && row.dataset.category !== category;
         if (!row.hidden) visible += 1;
       });
-      count.textContent = `${visible} ${visible === 1 ? 'post' : 'posts'}`;
       empty.hidden = visible !== 0;
     });
   });

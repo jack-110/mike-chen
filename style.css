@@ -10,9 +10,6 @@ html{background:#fdfdfd}html{--page-text:#252a27;--page-muted:#687068;--page-lin
 .category-filter:focus-visible{outline:2px solid var(--home-accent);outline-offset:4px}
 .category-count{opacity:.7;font-size:11px;margin-left:9px}
 .content{text-rendering:optimizeLegibility}
-.post-list-header{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin:32px 0}
-.home .post-list-heading,.post-count{margin:0;letter-spacing:normal;text-transform:none}
-.post-count{font-size:14px;line-height:28px;color:#828282}
 .home .post-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;margin:0;padding:23px 0;border-bottom:1px solid var(--home-line)}
 .home .post-list h3{margin:0}
 .home .post-meta{font:400 14px/28px Palatino,"Palatino Linotype",Georgia,Times,"Times New Roman",serif;color:#828282;white-space:nowrap;padding-top:3px}
