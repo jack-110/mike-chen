@@ -16,13 +16,19 @@ An agent is anything that could perceive the enviroments and take actions. It is
 ### Planning & Reasoning
 
 The reasoning means that the agent's internal actions that update it's own state. And this a is very important for agents, as it's very hard to maintain the observation-action mappings which size could be very large, even unlimited. Another resson is that you can make sure that the agent is align with your goals/values by watching it's reasoning steps. 
+
 COT is a prompting trick that make the LLM to write out intermideate reasoning steps before it gives the final answer. COT has the hallcination problem, as it just do the reasoning without actions.
+
 ReAct mitegate the halucination problem by taking actions. It interleaves the reasoning steps with real actions(tool callings), so it can verify it's reasoning steps by observe the results of the tool callings.
+
 Self consistency is a variant of COT, it generates a diverse set of reasoning path, instead of just one, and aggregate by choosing the most consistent answer in the anwser sets.
 
-
-
-
+Reflexion agents reflect on its task feedbacks, and then maintain the reflective text in the episodic(long-term) memory that can be used as "self hints" in the future. Specifically, when a task failed for not handle the empty test in the first run, and the agent will absobe the refelctive test "handle the empty list" in the next run(not the next step in the same run). The reflexion contains five parts:
+- Actor: take actions and generate the trajectory.
+- Trajectory: short-term memeory.
+- Evaluator: judge the trajectory through unit test, exc, and pass it's feedback to the self-relection LLM.
+- Self-reflection LLM: generate the reflective text and write them into the episodic memory.
+- Experience: long-term memory.
 
 ### Agent Memory
 
