@@ -1,6 +1,7 @@
 ---
 title: Personal Growth
 date: 2026-11-28
+category: Reading
 draft: false
 ---
 
