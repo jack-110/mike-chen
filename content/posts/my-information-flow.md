@@ -2,7 +2,7 @@
 title: 我的信息流：从信息输入到博客输出
 date: 2026-11-28
 category: Reading
-tags: 信息管理, 知识管理, 写作
+tags: 信息管理
 sample: false
 ---
 
