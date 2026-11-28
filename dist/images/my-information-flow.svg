@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="340" viewBox="0 0 1120 340" role="img" aria-labelledby="title desc">
+  <title id="title">我的信息流</title>
+  <desc id="desc">从左到右：X、YouTube、Podcast 和 Inoreader 的原始信息，整理到 Notion 和 Raindrop，经过大脑理解、思考与内化，最终输出到个人博客。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#82918e" stroke-width="1.5"/></marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #243c36; }
+      .label { font-size: 16px; fill: #697c74; }
+      .heading { font-size: 24px; font-weight: 600; }
+      .body { font-size: 18px; fill: #536a61; }
+      .tool { font-size: 20px; font-weight: 600; }
+      .connector { stroke: #82918e; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1120" height="340" rx="20" fill="#f8f7f2"/>
+  <text x="28" y="46" font-size="28" font-weight="650">我的信息流</text>
+  <text x="1092" y="44" text-anchor="end" class="body">输入 → 整理 → 内化 → 输出</text>
+
+  <rect x="28" y="78" width="224" height="230" rx="16" fill="#edf1f5" stroke="#d9e1e8"/>
+  <text x="48" y="111" class="label">01 / 原始信息</text>
+  <text x="48" y="149" class="heading">信息入口</text>
+  <text x="48" y="190" class="tool">X · YouTube</text>
+  <text x="48" y="225" class="tool">Podcast · Inoreader</text>
+  <text x="48" y="279" class="body">发现值得关注的内容</text>
+
+  <path d="M260 198 H298" class="connector"/>
+
+  <rect x="308" y="78" width="224" height="230" rx="16" fill="#eeeef7" stroke="#dddded"/>
+  <text x="328" y="111" class="label">02 / 整理与保存</text>
+  <text x="328" y="149" class="heading">Notion · Raindrop</text>
+  <text x="328" y="190" class="body">Notion：笔记与问题</text>
+  <text x="328" y="225" class="body">Raindrop：原始链接</text>
+  <text x="328" y="279" class="body">筛选 · 分类 · 保留来源</text>
+
+  <path d="M540 198 H578" class="connector"/>
+
+  <rect x="588" y="78" width="224" height="230" rx="16" fill="#e6efe8" stroke="#ccded0"/>
+  <text x="608" y="111" class="label">03 / 输入处理</text>
+  <text x="608" y="149" class="heading">大脑</text>
+  <text x="608" y="190" class="body">阅读 · 理解 · 追问</text>
+  <text x="608" y="225" class="body">连接 · 实践 · 内化</text>
+  <text x="608" y="279" class="body">形成自己的判断</text>
+
+  <path d="M820 198 H858" class="connector"/>
+
+  <rect x="868" y="78" width="224" height="230" rx="16" fill="#f4eadb" stroke="#e7d6bc"/>
+  <text x="888" y="111" class="label">04 / 输出</text>
+  <text x="888" y="149" class="heading">个人博客</text>
+  <text x="888" y="190" class="body">学习笔记 · 实践记录</text>
+  <text x="888" y="225" class="body">个人观点</text>
+  <text x="888" y="279" class="body">组织观点，写成文章</text>
+</svg>
